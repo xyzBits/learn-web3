@@ -10,6 +10,7 @@ contract CounterTest is Test {
     function setUp() public {
         counter = new Counter();
         counter.setNumber(0);
+        counter.setCounter(1);
     }
 
     function test_Increment() public {
@@ -21,4 +22,15 @@ contract CounterTest is Test {
         counter.setNumber(x);
         assertEq(counter.number(), x);
     }
+
+    function test_count() public {
+        counter.count();
+        assertEq(counter.counter(), 2);
+    }
+
+    function testFuzz_SetCounter(uint256 x) public {
+        counter.setCounter(x);
+        assertEq(counter.counter(), x);
+    }
+
 }
